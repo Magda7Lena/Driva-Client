@@ -1,0 +1,25 @@
+<div class="container flex justify-center">
+  <mat-card class="w-9/12">
+    <mat-card-title>
+      <mat-icon>person</mat-icon>
+      <span> {{account.firstName}} {{account.lastName}} </span>
+    </mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>id: {{account.id}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>lagin: {{account.username}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>email: {{account.email}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>tel: {{account.phoneNumber}}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>rola: {{account.roles}}</mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button (click)="openDialogAccount()" color="primary" mat-raised-button>edytuj</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

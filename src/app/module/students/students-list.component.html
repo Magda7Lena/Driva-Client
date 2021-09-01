@@ -1,0 +1,48 @@
+<div class="p-12">
+  <div class="mat-typography" fxLayoutAlign="space-between center">
+    <h1>Studenci</h1>
+    <button (click)="openAddStudentDialog()" color="primary" mat-raised-button>
+      <mat-icon aria-hidden="false" aria-label="icon">add</mat-icon>
+      Dodaj
+    </button>
+  </div>
+  <mat-form-field class="w-full">
+    <input (keyup)="applyFilter($event)" matInput placeholder="szukaj">
+  </mat-form-field>
+    <div class="mat-elevation-z8">
+      <table [dataSource]="dataSource" class="demo-table" mat-table matSort>
+        <ng-container matColumnDef="id">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>Id</th>
+          <td *matCellDef="let row" mat-cell> {{row.id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="firstName">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>Imię</th>
+          <td *matCellDef="let row" mat-cell> {{row.firstName}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header>Nazwisko</th>
+          <td *matCellDef="let row" mat-cell> {{row.lastName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header> Email</th>
+          <td *matCellDef="let row" mat-cell> {{row.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phoneNumber">
+          <th *matHeaderCellDef mat-header-cell mat-sort-header> Tel.</th>
+          <td *matCellDef="let row" mat-cell> {{row.phoneNumber}} </td>
+        </ng-container>
+
+        <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+        <tr (click)="onClick(row)" *matRowDef="let row; columns: displayedColumns;" class="row-hover" mat-row>
+        </tr>
+        <tr *matNoDataRow class="mat-row">
+          <td class="mat-cell" colspan="4">nie znaleziono</td>
+        </tr>
+      </table>
+      <mat-progress-bar *ngIf="isLoadingResults" mode="indeterminate"></mat-progress-bar>
+      <mat-paginator [pageSizeOptions]="[25, 50, 100]"></mat-paginator>
+    </div>
+</div>

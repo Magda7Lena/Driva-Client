@@ -1,0 +1,38 @@
+<div class="login-from" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+    <form (ngSubmit)="onSubmit(login)" [formGroup]="login">
+      <mat-card-content>
+        <mat-form-field appearance="fill" class="example-full-width">
+          <mat-label>Username</mat-label>
+          <input formControlName="username" matInput>
+          <mat-error *ngIf="username?.hasError('required')">
+            username is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="username?.hasError('minlength')">
+            username must contain minimum {{username.errors?.minlength.requiredLength}} characters
+          </mat-error>
+          <mat-error *ngIf="username?.hasError('pattern')">
+            username can contain alphanumeric characters only
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input formControlName="password" matInput placeholder="***" type="password">
+          <mat-error *ngIf="password?.hasError('required')">
+            password is <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="password?.hasError('badCredentials')">
+            {{password.errors?.badCredentials}}
+          </mat-error>
+        </mat-form-field>
+      </mat-card-content>
+      <div>
+        <button [disabled]="login.invalid" class="w-full" color="primary" mat-raised-button type="submit">Login</button>
+      </div>
+    </form>
+  </mat-card>
+</div>
+
